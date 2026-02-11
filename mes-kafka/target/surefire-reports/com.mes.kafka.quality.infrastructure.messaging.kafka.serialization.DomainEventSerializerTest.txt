@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mes.kafka.quality.infrastructure.messaging.kafka.serialization.DomainEventSerializerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.135 s - in com.mes.kafka.quality.infrastructure.messaging.kafka.serialization.DomainEventSerializerTest

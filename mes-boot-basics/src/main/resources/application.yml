@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: mes-boot-basics
+  profiles:
+    active: dev
+
+# MES 工單模組組態
+mes:
+  workorder:
+    default-priority: MEDIUM
+    max-active-orders: 100
+
+# Logging 組態
+logging:
+  level:
+    com.mes: INFO
+    root: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

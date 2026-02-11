@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    [MyBatis XML Mapper - 設備]
+
+    XML Mapper 的優勢：
+    1. 支援複雜的 resultMap（欄位名 -> Java 屬性名的映射）
+    2. 支援動態 SQL（if, choose, foreach 等）
+    3. 讓 Java 介面保持乾淨
+
+    namespace 必須對應到 Java Mapper 介面的完整類別名稱。
+-->
+<mapper namespace="com.mes.mybatis.equipment.infrastructure.persistence.mybatis.mapper.EquipmentMapper">
+
+    <!-- 結果映射：將 snake_case 欄位映射到 EquipmentDO 的 camelCase 屬性 -->
+    <resultMap id="equipmentResultMap"
+               type="com.mes.mybatis.equipment.infrastructure.persistence.mybatis.dataobject.EquipmentDO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="equipmentType" column="equipment_type"/>
+        <result property="status" column="status"/>
+        <result property="locationBuilding" column="location_building"/>
+        <result property="locationFloor" column="location_floor"/>
+        <result property="locationZone" column="location_zone"/>
+        <result property="locationPosition" column="location_position"/>
+        <result property="paramTemperature" column="param_temperature"/>
+        <result property="paramPressure" column="param_pressure"/>
+        <result property="paramSpeed" column="param_speed"/>
+        <result property="paramVibration" column="param_vibration"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- 根據 ID 查詢單一設備 -->
+    <select id="selectById" resultMap="equipmentResultMap">
+        SELECT id, name, equipment_type, status,
+               location_building, location_floor, location_zone, location_position,
+               param_temperature, param_pressure, param_speed, param_vibration,
+               created_at, updated_at
+        FROM equipment
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查詢所有設備 -->
+    <select id="selectAll" resultMap="equipmentResultMap">
+        SELECT id, name, equipment_type, status,
+               location_building, location_floor, location_zone, location_position,
+               param_temperature, param_pressure, param_speed, param_vibration,
+               created_at, updated_at
+        FROM equipment
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 依狀態查詢設備 -->
+    <select id="selectByStatus" resultMap="equipmentResultMap">
+        SELECT id, name, equipment_type, status,
+               location_building, location_floor, location_zone, location_position,
+               param_temperature, param_pressure, param_speed, param_vibration,
+               created_at, updated_at
+        FROM equipment
+        WHERE status = #{status}
+        ORDER BY name
+    </select>
+
+    <!-- 依類型查詢設備 -->
+    <select id="selectByType" resultMap="equipmentResultMap">
+        SELECT id, name, equipment_type, status,
+               location_building, location_floor, location_zone, location_position,
+               param_temperature, param_pressure, param_speed, param_vibration,
+               created_at, updated_at
+        FROM equipment
+        WHERE equipment_type = #{equipmentType}
+        ORDER BY name
+    </select>
+
+</mapper>

@@ -1,0 +1,8 @@
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/infrastructure/config/WorkOrderPropertiesTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/domain/factory/WorkOrderFactoryTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/domain/model/WorkOrderTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/MesBootBasicsApplicationTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/domain/model/ProductInfoTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/application/service/WorkOrderApplicationServiceTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/domain/model/QuantityTest.java
+/home/rexwang/workspace/spring2-learning/mes-boot-basics/src/test/java/com/mes/boot/workorder/domain/specification/WorkOrderSpecificationTest.java

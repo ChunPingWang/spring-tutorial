@@ -1,0 +1,13 @@
+# 開發環境組態 (Dev Profile)
+# 啟動方式：spring.profiles.active=dev
+
+mes:
+  workorder:
+    default-priority: MEDIUM
+    max-active-orders: 50
+
+logging:
+  level:
+    com.mes: DEBUG
+    com.mes.boot.workorder.infrastructure.persistence: DEBUG
+    com.mes.boot.workorder.infrastructure.event: DEBUG

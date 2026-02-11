@@ -1,0 +1,8 @@
+com/mes/common/ddd/specification/SpecificationTest.class
+com/mes/common/ddd/model/BaseAggregateRootTest$TestAggregate.class
+com/mes/common/ddd/model/BaseAggregateRootTest$TestDomainEvent.class
+com/mes/common/ddd/model/BaseValueObjectTest$TestVO.class
+com/mes/common/ddd/specification/SpecificationTest$GreaterThanSpec.class
+com/mes/common/ddd/specification/SpecificationTest$LessThanSpec.class
+com/mes/common/ddd/model/BaseAggregateRootTest.class
+com/mes/common/ddd/model/BaseValueObjectTest.class

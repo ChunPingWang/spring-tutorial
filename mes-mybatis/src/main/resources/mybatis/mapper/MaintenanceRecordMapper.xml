@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    [MyBatis XML Mapper - 維護記錄]
+
+    namespace 必須對應到 Java Mapper 介面的完整類別名稱。
+-->
+<mapper namespace="com.mes.mybatis.equipment.infrastructure.persistence.mybatis.mapper.MaintenanceRecordMapper">
+
+    <!-- 結果映射 -->
+    <resultMap id="maintenanceRecordResultMap"
+               type="com.mes.mybatis.equipment.infrastructure.persistence.mybatis.dataobject.MaintenanceRecordDO">
+        <id property="id" column="id"/>
+        <result property="equipmentId" column="equipment_id"/>
+        <result property="maintenanceType" column="maintenance_type"/>
+        <result property="description" column="description"/>
+        <result property="scheduledDate" column="scheduled_date"/>
+        <result property="completedDate" column="completed_date"/>
+        <result property="technicianName" column="technician_name"/>
+        <result property="status" column="status"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <!-- 根據設備 ID 查詢所有維護記錄 -->
+    <select id="selectByEquipmentId" resultMap="maintenanceRecordResultMap">
+        SELECT id, equipment_id, maintenance_type, description,
+               scheduled_date, completed_date, technician_name, status, created_at
+        FROM maintenance_record
+        WHERE equipment_id = #{equipmentId}
+        ORDER BY scheduled_date DESC
+    </select>
+
+</mapper>

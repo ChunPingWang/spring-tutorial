@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mes.boot.workorder.infrastructure.config.WorkOrderPropertiesTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.646 s - in com.mes.boot.workorder.infrastructure.config.WorkOrderPropertiesTest

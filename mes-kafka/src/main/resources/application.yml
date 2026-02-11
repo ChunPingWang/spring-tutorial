@@ -1,0 +1,46 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: mes-kafka-quality
+
+  # Spring Cloud Stream 設定
+  cloud:
+    # 函數式綁定定義
+    function:
+      definition: qualityEventsIn;productionEventsIn
+
+    stream:
+      # Kafka Binder 設定
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+          replication-factor: 1
+
+      # Binding 設定
+      bindings:
+        # 品質事件輸出 (Producer)
+        qualityEventsOut-out-0:
+          destination: mes.quality.events
+          content-type: application/json
+
+        # 品質事件輸入 (Consumer) - 接收自己發出的品質事件
+        qualityEventsIn-in-0:
+          destination: mes.quality.events
+          group: quality-service
+          content-type: application/json
+
+        # 生產事件輸入 (Consumer) - 接收來自生產模組的事件
+        productionEventsIn-in-0:
+          destination: mes.production.events
+          group: quality-service
+          content-type: application/json
+
+# Logging 設定
+logging:
+  level:
+    com.mes.kafka: DEBUG
+    org.springframework.cloud.stream: INFO
+    org.apache.kafka: WARN

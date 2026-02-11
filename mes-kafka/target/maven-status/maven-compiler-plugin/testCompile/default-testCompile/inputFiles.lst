@@ -1,0 +1,7 @@
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/domain/service/QualityDomainServiceTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/domain/model/InspectionOrderTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/domain/model/MeasuredValueTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/MesKafkaApplicationTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/infrastructure/messaging/kafka/publisher/KafkaDomainEventPublisherTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/infrastructure/messaging/kafka/serialization/DomainEventSerializerTest.java
+/home/rexwang/workspace/spring2-learning/mes-kafka/src/test/java/com/mes/kafka/quality/domain/model/InspectionResultTest.java

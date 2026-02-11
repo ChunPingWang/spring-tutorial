@@ -1,0 +1,17 @@
+com/mes/kafka/quality/domain/service/QualityDomainServiceTest.class
+com/mes/kafka/quality/infrastructure/messaging/kafka/publisher/KafkaDomainEventPublisherTest$TestablePublisher.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$DefectRateTest.class
+com/mes/kafka/quality/infrastructure/messaging/kafka/publisher/KafkaDomainEventPublisherTest$CapturedMessage.class
+com/mes/kafka/quality/infrastructure/messaging/kafka/serialization/DomainEventSerializerTest.class
+com/mes/kafka/quality/domain/model/MeasuredValueTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$RecordResultTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$CompleteTest.class
+com/mes/kafka/quality/domain/service/QualityDomainServiceTest$CalculateDefectRateTest.class
+com/mes/kafka/MesKafkaApplicationTest.class
+com/mes/kafka/quality/domain/service/QualityDomainServiceTest$IsWithinSPCTest.class
+com/mes/kafka/quality/infrastructure/messaging/kafka/publisher/KafkaDomainEventPublisherTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$QualityAlertTest.class
+com/mes/kafka/quality/domain/model/InspectionResultTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$DomainEventTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest.class
+com/mes/kafka/quality/domain/model/InspectionOrderTest$StateTransitionTest.class

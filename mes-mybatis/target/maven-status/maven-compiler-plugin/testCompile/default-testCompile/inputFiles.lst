@@ -1,0 +1,6 @@
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/equipment/domain/model/EquipmentTest.java
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/equipment/infrastructure/persistence/MyBatisEquipmentRepositoryTest.java
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/MesMyBatisApplicationTest.java
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest.java
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/equipment/infrastructure/persistence/mybatis/mapper/EquipmentMapperTest.java
+/home/rexwang/workspace/spring2-learning/mes-mybatis/src/test/java/com/mes/mybatis/equipment/domain/model/LocationTest.java

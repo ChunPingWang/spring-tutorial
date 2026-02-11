@@ -1,0 +1,9 @@
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/domain/model/OutputQuantityTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/application/assembler/ProductionRecordAssemblerTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/infrastructure/bus/SimpleQueryBusTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/application/command/handler/StartProductionCommandHandlerTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/MesWebApiApplicationTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/infrastructure/bus/SimpleCommandBusTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/adapter/in/web/ProductionCommandControllerTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/domain/model/ProductionRecordTest.java
+/home/rexwang/workspace/spring2-learning/mes-web-api/src/test/java/com/mes/web/production/adapter/in/web/ProductionQueryControllerTest.java

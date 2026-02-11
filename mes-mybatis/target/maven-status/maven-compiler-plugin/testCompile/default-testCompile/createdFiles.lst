@@ -1,0 +1,16 @@
+com/mes/mybatis/MesMyBatisApplicationTest.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest$MaintenanceRecordToDO.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/mapper/EquipmentMapperTest.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$InitialState.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$Decommission.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest$RoundTrip.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$MaintenanceScheduling.class
+com/mes/mybatis/equipment/infrastructure/persistence/MyBatisEquipmentRepositoryTest.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$StartStopTransitions.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$UpdateParameters.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest$ToDomain.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest.class
+com/mes/mybatis/equipment/domain/model/EquipmentTest$BreakdownReport.class
+com/mes/mybatis/equipment/infrastructure/persistence/mybatis/converter/EquipmentConverterTest$ToDataObject.class
+com/mes/mybatis/equipment/domain/model/LocationTest.class
