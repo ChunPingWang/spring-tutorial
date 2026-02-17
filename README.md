@@ -610,6 +610,158 @@ public class ListEquipmentByStatusQueryHandler
 }
 ```
 
+#### DDD Repository Pattern 實作
+
+本模組展示 **DDD Repository Pattern** 的完整實作，這是 DDD 戰術設計中連接領域層與基礎設施層的核心模式。
+
+##### 核心原則
+
+| 原則 | 說明 |
+|------|------|
+| **Repository 只操作聚合根** | 所有寫入操作都必須透過聚合根，確保業務一致性 |
+| **Domain Layer 定義介面** | Repository 介面在 Domain 層定義（Port），基礎設施層實作（Adapter） |
+| **聚合根維護不變式** | 所有對聚合內實體的修改都必須經過聚合根的業務方法 |
+
+##### 為什麼只操作聚合根？
+
+```java
+// ❌ 錯誤：不透過聚合根直接操作內部 Entity
+maintenanceRecordRepository.save(record);  // 繞過聚合根，業務規則失效
+
+// ✅ 正確：透過聚合根操作
+equipment.addMaintenanceRecord(...);        // 聚合根會驗證業務規則
+equipmentRepository.save(equipment);       // Repository 只接受聚合根
+```
+
+##### Repository 介面（Domain Layer — Port）
+
+```java
+// 領域層定義的 Repository 介面 — 只知道聚合根，不知道 MyBatis
+public interface EquipmentRepository extends Repository<Equipment, EquipmentId> {
+    Optional<Equipment> findById(EquipmentId id);
+    List<Equipment> findAll();
+    void save(Equipment aggregate);  // 參數是聚合根
+    void deleteById(EquipmentId id);
+    
+    // 自訂查詢方法
+    List<Equipment> findByStatus(EquipmentStatus status);
+    List<Equipment> findByType(EquipmentType type);
+}
+```
+
+##### Repository 實作（Infrastructure Layer — Adapter）
+
+```java
+@Repository
+public class MyBatisEquipmentRepository implements EquipmentRepository {
+
+    @Override
+    @Transactional
+    public void save(Equipment aggregate) {
+        // 1. 保存聚合根（Equipment）
+        EquipmentDO equipmentDO = converter.toDataObject(aggregate);
+        equipmentMapper.insertOrUpdate(equipmentDO);
+        
+        // 2. 同步維護聚合內的子 Entity（MaintenanceRecord）
+        //    確保聚合根與其內部實體的一致性
+        syncMaintenanceRecords(aggregate);
+        
+        // 3. 清除領域事件
+        aggregate.clearEvents();
+    }
+
+    // 同步維護記錄：比較記憶體與資料庫，執行增/刪/改
+    private void syncMaintenanceRecords(Equipment aggregate) {
+        String equipmentId = aggregate.getId().getValue();
+        List<MaintenanceRecordDO> existing = maintenanceRecordMapper.selectByEquipmentId(equipmentId);
+        Set<String> existingIds = existing.stream().map(MaintenanceRecordDO::getId).collect(toSet());
+        
+        Set<String> currentIds = aggregate.getMaintenanceRecords().stream()
+            .map(r -> r.getId().getValue()).collect(toSet());
+
+        // INSERT / UPDATE 聚合中的記錄
+        for (MaintenanceRecord record : aggregate.getMaintenanceRecords()) {
+            MaintenanceRecordDO recordDO = converter.maintenanceRecordToDO(record, equipmentId);
+            if (existingIds.contains(record.getId().getValue())) {
+                maintenanceRecordMapper.update(recordDO);
+            } else {
+                maintenanceRecordMapper.insert(recordDO);
+            }
+        }
+    }
+}
+```
+
+##### 測試驗證
+
+```java
+@SpringBootTest
+@Transactional
+class MyBatisEquipmentRepositoryTest {
+
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
+    @Test
+    void shouldSaveAndFindWithMaintenanceRecords() {
+        // 建立聚合根（包含子 Entity）
+        Equipment equipment = createTestEquipment();
+        equipment.scheduleMaintenance("定期保養", LocalDate.now().plusDays(7));
+
+        // 透過 Repository 保存（聚合根 + 子 Entity 一起持久化）
+        equipmentRepository.save(equipment);
+
+        // 驗證可以完整取出
+        Optional<Equipment> found = equipmentRepository.findById(equipment.getId());
+        assertThat(found).isPresent();
+        assertThat(found.get().getMaintenanceRecords()).hasSize(1);
+    }
+}
+```
+
+##### 六角形架構視角
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      Application Layer                      │
+│                  (ApplicationService / CommandHandler)       │
+└────────────────────────────┬────────────────────────────────┘
+                             │ save(Equipment)
+                             ▼
+┌─────────────────────────────────────────────────────────────┐
+│                        Domain Layer                         │
+│  ┌─────────────────┐    ┌─────────────────────────────────┐ │
+│  │ Equipment       │    │ EquipmentRepository (Port)      │ │
+│  │ (Aggregate Root)│    │ ← 領域層定義，只接受聚合根       │ │
+│  │                 │    └─────────────────────────────────┘ │
+│  │ MaintenanceRecord│                                        │
+│  │ (Entity)        │                                        │
+│  └─────────────────┘                                        │
+└────────────────────────────┬────────────────────────────────┘
+                             │ implements
+                             ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Infrastructure Layer                     │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ MyBatisEquipmentRepository (Adapter)                    ││
+│  │ ← 實作 Domain 定義的介面，負責持久化                     ││
+│  └─────────────────────────────────────────────────────────┘│
+│         │                    │                    │         │
+│         ▼                    ▼                    ▼         │
+│  ┌───────────┐      ┌───────────────┐      ┌───────────┐   │
+│  │EquipmentMapper│   │MaintenanceRecord│    │Converter │   │
+│  │   (XML)     │      │   Mapper       │      │           │   │
+│  └───────────┘      └───────────────┘      └───────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+##### 測試結果
+
+```
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+```
+
 #### H2 Console
 
 啟動後可透過 `http://localhost:8082/h2-console` 查看資料庫。
