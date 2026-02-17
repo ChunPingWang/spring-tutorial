@@ -1,0 +1,10 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: mes-aop
+
+logging:
+  level:
+    com.mes.aop: DEBUG

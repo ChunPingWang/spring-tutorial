@@ -1,0 +1,18 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: mes-hystrix
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      mesCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
